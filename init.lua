@@ -1,5 +1,4 @@
 require('core.settings')
-require('core.keymaps')
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -27,6 +26,8 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   { import = 'plugins' },
 }, {})
+
+require('core.keymaps')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
