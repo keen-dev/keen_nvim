@@ -41,7 +41,7 @@ vim.o.termguicolors = true
 -- Custom Settings
 vim.o.scrolloff = 10
 vim.o.cursorline = true
-vim.o.colorcolumn = "80"
+-- vim.o.colorcolumn = "80"
 vim.o.tabstop = 4
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

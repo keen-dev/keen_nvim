@@ -13,7 +13,6 @@ return {
       'rafamadriz/friendly-snippets',
     },
     config = function()
-
       -- [[ Configure nvim-cmp ]]
       -- See `:help cmp`
       local cmp = require 'cmp'
