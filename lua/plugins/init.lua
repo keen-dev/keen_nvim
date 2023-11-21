@@ -30,5 +30,6 @@ return {
     main = 'ibl',
     opts = {},
   },
+  { 'szw/vim-maximizer' },
 
 }

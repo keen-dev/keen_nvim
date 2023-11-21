@@ -13,20 +13,22 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- Custom Keymaps
+-- File Explorer
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
+
+-- Window Navigation
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>')
 vim.keymap.set('n', '<C-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<C-k>', ':wincmd k<CR>')
 
-vim.keymap.set('n', '<leader>sx', ':close<CR>')
-vim.keymap.set('n', '<leader>sv', ':vsplit<CR>')
-vim.keymap.set('n', '<leader>sh', ':split<CR>')
-
+-- Window Management
+vim.keymap.set('n', '<leader>wx', ':close<CR>')
+vim.keymap.set('n', '<leader>wv', ':vsplit<CR>')
+vim.keymap.set('n', '<leader>wh', ':split<CR>')
+vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>')
 
 -- Telescope Keymaps
--- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>b', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
@@ -37,14 +39,14 @@ vim.keymap.set('n', '<leader>/', function()
 	})
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>s?', require('telescope.builtin').help_tags, { desc = '[S]earch [?]help' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>pg', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>p?', require('telescope.builtin').help_tags, { desc = '[S]earch [?]help' })
+vim.keymap.set('n', '<leader>pw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>ps', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>pr', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
+vim.keymap.set('n', '<leader>pd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>pp', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 -- ToggleTerm Keymaps
 function _G.set_terminal_keymaps()
@@ -70,11 +72,11 @@ vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = '[
 local mark = require('harpoon.mark')
 local ui = require('harpoon.ui')
 
-vim.keymap.set('n', 'ga', function() mark.add_file() end, { desc = 'Harpoon [A]dd file' })
+vim.keymap.set('n', 'ga', function() mark.add_file() end, { desc = 'Harpoon add file' })
 vim.keymap.set('n', 'gh', function() ui.toggle_quick_menu() end, { desc = '[H]arpoon quick menu' })
 vim.keymap.set('n', 'gj', function() ui.nav_prev() end, { desc = 'Harpoon Prev' })
 vim.keymap.set('n', 'gk', function() ui.nav_next() end, { desc = 'Harpoon Next' })
-vim.keymap.set('n', 'gm', function() ui.nav_file(1) end, { desc = 'First Nav' })
-vim.keymap.set('n', 'g,', function() ui.nav_file(2) end, { desc = 'Second Nav' })
-vim.keymap.set('n', 'g.', function() ui.nav_file(3) end, { desc = 'Third Nav' })
-vim.keymap.set('n', 'g/', function() ui.nav_file(4) end, { desc = 'Fourth Nav' })
+vim.keymap.set('n', 'gm', function() ui.nav_file(1) end, { desc = 'Harpoon First Nav' })
+vim.keymap.set('n', 'g,', function() ui.nav_file(2) end, { desc = 'Harpoon Second Nav' })
+vim.keymap.set('n', 'g.', function() ui.nav_file(3) end, { desc = 'Harpoon Third Nav' })
+vim.keymap.set('n', 'g/', function() ui.nav_file(4) end, { desc = 'Harpoon Fourth Nav' })
