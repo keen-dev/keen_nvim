@@ -15,7 +15,8 @@ return {
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace/Window', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]erminal', _ = 'which_key_ignore' },
-        ['<leader>p'] = { name = 'Project Finder', _ = 'which_key_ignore' }
+        ['<leader>p'] = { name = 'Project Finder', _ = 'which_key_ignore' },
+        ['<leader>f'] = { name = 'Formatting', _ = 'which_key_ignore' },
       }
     end
   }

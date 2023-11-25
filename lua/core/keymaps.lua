@@ -1,7 +1,9 @@
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'x', '"_x')
-vim.keymap.set({ 'n', 'v' }, '<C-s>', ':w<CR>')
+vim.keymap.set({ 'n', 'v' }, '<C-s>', ':w<CR>', { silent = true })
+vim.keymap.set({ 'i' }, '<C-s>', '<Esc>:w<CR>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-/>', ':nohl<CR>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -17,16 +19,16 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
 
 -- Window Navigation
-vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<C-l>', ':wincmd l<CR>')
-vim.keymap.set('n', '<C-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<C-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { silent = true })
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { silent = true })
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { silent = true })
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { silent = true })
 
 -- Window Management
-vim.keymap.set('n', '<leader>wx', ':close<CR>')
-vim.keymap.set('n', '<leader>wv', ':vsplit<CR>')
-vim.keymap.set('n', '<leader>wh', ':split<CR>')
-vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>')
+vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true })
+vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true })
+vim.keymap.set('n', '<leader>wh', ':split<CR>', { silent = true })
+vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true })
 
 -- Telescope Keymaps
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -63,10 +65,12 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>', { desc = '[T]oggle [T]erminal' })
-vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=60 direction=vertical<CR>', { desc = '[V]ertical [T]erminal' })
-vim.keymap.set('n', '<leader>th', ':ToggleTerm size=40 direction=horizontal<CR>', { desc = '[H]orizontal [T]erminal' })
-vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = '[F]loating [T]erminal' })
+vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>', { silent = true, desc = '[T]oggle [T]erminal' })
+vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=60 direction=vertical<CR>',
+	{ silent = true, desc = '[V]ertical [T]erminal' })
+vim.keymap.set('n', '<leader>th', ':ToggleTerm size=40 direction=horizontal<CR>',
+	{ silent = true, desc = '[H]orizontal [T]erminal' })
+vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { silent = true, desc = '[F]loating [T]erminal' })
 
 -- Harpoon Keymaps
 local mark = require('harpoon.mark')
@@ -80,3 +84,6 @@ vim.keymap.set('n', 'gm', function() ui.nav_file(1) end, { desc = 'Harpoon First
 vim.keymap.set('n', 'g,', function() ui.nav_file(2) end, { desc = 'Harpoon Second Nav' })
 vim.keymap.set('n', 'g.', function() ui.nav_file(3) end, { desc = 'Harpoon Third Nav' })
 vim.keymap.set('n', 'g/', function() ui.nav_file(4) end, { desc = 'Harpoon Fourth Nav' })
+
+-- Twilight Keymaps
+vim.keymap.set('n', '<leader>ft', ':Twilight<CR>')
