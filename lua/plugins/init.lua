@@ -31,24 +31,24 @@ return {
     opts = {},
   },
   { 'szw/vim-maximizer' },
-  {
-    'gelguy/wilder.nvim',
-    config = function()
-      local wilder = require('wilder')
-      wilder.setup({ modes = { ':', '/', '?' } })
-    end
-  },
+  -- {
+  --   'gelguy/wilder.nvim',
+  --   config = function()
+  --     local wilder = require('wilder')
+  --     wilder.setup({ modes = { ':', '/', '?' } })
+  --   end
+  -- },
   {
     "folke/twilight.nvim",
     opts = {
     }
   },
-  {
-    "folke/noice.nvim",
-    opts = {},
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-    }
-  }
+  -- {
+  --   "folke/noice.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --   }
+  -- }
 }
