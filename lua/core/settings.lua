@@ -6,6 +6,11 @@ vim.o.relativenumber = true
 -- Make line numbers default
 vim.wo.number = true
 
+-- vim.o.shell = vim.fn.executable 'powershell' == 1
+-- vim.o.shellcmdflag =
+-- "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+-- vim.o.shellquote = ''
+-- vim.o.shellxquote = ''
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
