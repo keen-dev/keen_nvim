@@ -8,31 +8,18 @@ return {
 		end,
 	},
 	-- {
-	-- 	'Alexis12119/nightly.nvim',
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin-mocha",
 	-- 	priority = 1000,
 	-- 	config = function()
-	-- 		local color = require("nightly").setup({
-	-- 			transparent = false,
-	-- 			styles = {
-	-- 				comments = { italic = true },
-	-- 				functions = { italic = false },
-	-- 				variables = { italic = false },
-	-- 				keywords = { italic = false },
-	-- 			},
-	-- 			highlights = {},
-	--
-	-- 			vim.cmd.colorscheme 'nightly'
-	--
-	-- 		})
+	-- 		vim.cmd.colorscheme "catppuccin-mocha"
 	-- 	end
-	--
-	-- }
+	-- },
 	-- {
-	-- 	'bluz71/vim-nightfly-colors',
-	-- 	lazy = false,
+	-- 	"rmehri01/onenord.nvim",
 	-- 	priority = 1000,
 	-- 	config = function()
-	-- 		vim.cmd [[colorscheme nightfly]]
+	-- 		vim.cmd.colorscheme "onenord"
 	-- 	end
 	-- }
 }

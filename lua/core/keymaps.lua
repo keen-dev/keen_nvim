@@ -5,6 +5,9 @@ vim.keymap.set({ 'n', 'v' }, '<C-s>', ':w<CR>', { silent = true })
 vim.keymap.set({ 'i' }, '<C-s>', '<Esc>:w<CR>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<C-/>', ':nohl<CR>', { silent = true })
 
+-- Easy Motion
+vim.keymap.set('n', '<leader><leader>', '<Plug>(easymotion-prefix)', { silent = true, desc = 'EasyMotion Prefix' })
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -18,6 +21,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- File Explorer
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
 
+-- Screen Movement
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
+
 -- Window Navigation
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { silent = true })
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { silent = true })
@@ -25,10 +32,17 @@ vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { silent = true })
 vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { silent = true })
 
 -- Window Management
-vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true })
-vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true })
-vim.keymap.set('n', '<leader>wh', ':split<CR>', { silent = true })
-vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true })
+vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true, desc = '[X] Close window' })
+vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true, desc = '[V]ertical split' })
+vim.keymap.set('n', '<leader>wh', ':split<CR>', { silent = true, desc = '[H]orizontal split' })
+vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true, desc = '[M]aximizer' })
+
+vim.keymap.set('n', '<leader>wk', ':resize +5<CR>', { silent = true, desc = '[+] Resize vertically' })
+vim.keymap.set('n', '<leader>wj', ':resize -5<CR>', { silent = true, desc = '[-] Resize vertically' })
+vim.keymap.set('n', '<leader>wh', ':vertical resize +5<CR>', { silent = true, desc = '[+] Resize horizontally' })
+vim.keymap.set('n', '<leader>wH', ':vertical resize +50<CR>', { silent = true, desc = '[+] Resize [H]orizontally - +50' })
+vim.keymap.set('n', '<leader>wl', ':vertical resize -5<CR>', { silent = true, desc = '[-] Resize horizontally' })
+vim.keymap.set('n', '<leader>wL', ':vertical resize -50<CR>', { silent = true, desc = '[-] Resize horizontally - -50' })
 
 -- Telescope Keymaps
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -72,18 +86,6 @@ vim.keymap.set('n', '<leader>th', ':ToggleTerm size=40 direction=horizontal<CR>'
 	{ silent = true, desc = '[H]orizontal [T]erminal' })
 vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { silent = true, desc = '[F]loating [T]erminal' })
 
--- Harpoon Keymaps
-local mark = require('harpoon.mark')
-local ui = require('harpoon.ui')
-
-vim.keymap.set('n', 'ga', function() mark.add_file() end, { desc = 'Harpoon add file' })
-vim.keymap.set('n', 'gh', function() ui.toggle_quick_menu() end, { desc = '[H]arpoon quick menu' })
-vim.keymap.set('n', 'gj', function() ui.nav_prev() end, { desc = 'Harpoon Prev' })
-vim.keymap.set('n', 'gk', function() ui.nav_next() end, { desc = 'Harpoon Next' })
-vim.keymap.set('n', 'gm', function() ui.nav_file(1) end, { desc = 'Harpoon First Nav' })
-vim.keymap.set('n', 'g,', function() ui.nav_file(2) end, { desc = 'Harpoon Second Nav' })
-vim.keymap.set('n', 'g.', function() ui.nav_file(3) end, { desc = 'Harpoon Third Nav' })
-vim.keymap.set('n', 'g/', function() ui.nav_file(4) end, { desc = 'Harpoon Fourth Nav' })
 
 -- Twilight Keymaps
-vim.keymap.set('n', '<leader>ft', ':Twilight<CR>')
+vim.keymap.set('n', '<leader>ft', ':Twilight<CR>', { silent = true, desc = '[T]oggle [T]wilight' })

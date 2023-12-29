@@ -11,7 +11,6 @@ vim.wo.number = true
 -- "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
 -- vim.o.shellquote = ''
 -- vim.o.shellxquote = ''
-
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -43,7 +42,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
--- Custom Settings
+-- Screen Settings
 vim.o.scrolloff = 10
 vim.o.cursorline = true
 -- vim.o.colorcolumn = "80"
