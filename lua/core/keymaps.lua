@@ -80,7 +80,7 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>', { silent = true, desc = '[T]oggle [T]erminal' })
-vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=60 direction=vertical<CR>',
+vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=135 direction=vertical<CR>',
 	{ silent = true, desc = '[V]ertical [T]erminal' })
 vim.keymap.set('n', '<leader>th', ':ToggleTerm size=40 direction=horizontal<CR>',
 	{ silent = true, desc = '[H]orizontal [T]erminal' })

@@ -29,8 +29,16 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = {
-          completeopt = 'menu,menuone,noinsert'
+        window = {
+          completion = {
+            completeopt = 'menu,menuone,noinsert',
+            border = 'rounded',
+            winhighlight = 'Normal:CMPNormal',
+          },
+          documentation = {
+            border = 'rounded',
+            winhighlight = 'Normal:CMPNormal',
+          }
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-j>'] = cmp.mapping.select_next_item(),
