@@ -85,7 +85,3 @@ vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=135 direction=vertical<CR>',
 vim.keymap.set('n', '<leader>th', ':ToggleTerm size=40 direction=horizontal<CR>',
 	{ silent = true, desc = '[H]orizontal [T]erminal' })
 vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { silent = true, desc = '[F]loating [T]erminal' })
-
-
--- Twilight Keymaps
-vim.keymap.set('n', '<leader>ft', ':Twilight<CR>', { silent = true, desc = '[T]oggle [T]wilight' })
