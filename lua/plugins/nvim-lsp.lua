@@ -75,13 +75,14 @@ return {
       --  If you want to override the default filetypes that your language server will attach to you can
       --  define the property 'filetypes' to the map in question.
       local servers = {
+        quick_lint_js = { filetypes = { 'javascript', 'typescript' } },
         -- clangd = {},
         -- gopls = {},
         pyright = {},
         -- rust_analyzer = {},
         -- tsserver = {},
-        -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+        html = { filetypes = { 'html', 'twig', 'hbs', 'htmldjango' } },
+        tailwindcss = {},
         lua_ls = {
           Lua = {
             workspace = { checkThirdParty = false },

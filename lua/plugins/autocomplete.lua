@@ -57,7 +57,8 @@ return {
           { name = 'buffer' },
           { name = 'path' },
           { name = 'autohotkey' },
-          { name = 'cmdline' }
+          { name = 'cmdline' },
+          { name = 'python' }
         })
       })
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
