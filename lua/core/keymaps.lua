@@ -21,6 +21,13 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- File Explorer
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
 
+-- Noice
+vim.keymap.set('n', '<leader>ml', ':NoiceLast<CR>', { silent = true, desc = 'Noice [L]ast' })
+vim.keymap.set('n', '<leader>mh', ':NoiceHistory<CR>', { silent = true, desc = 'Noice [H]istory' })
+vim.keymap.set('n', '<leader>md', ':NoiceDismiss<CR>', { silent = true, desc = 'Noice [D]ismiss' })
+vim.keymap.set('n', '<leader>mt', ':Noice telescope<CR>', { silent = true, desc = 'Noice [T]elescope' })
+
+
 -- Screen Movement
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
@@ -30,6 +37,9 @@ vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { silent = true })
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { silent = true })
 vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { silent = true })
 vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { silent = true })
+
+-- Tab Navigation
+vim.keymap.set('n', '<C-t>', ':tabnext<CR>', { silent = true })
 
 -- Window Management
 vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true, desc = '[X] Close window' })

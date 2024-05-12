@@ -14,6 +14,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
     },
     config = function()
       -- [[ Configure nvim-cmp ]]
@@ -21,7 +22,11 @@ return {
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       require('luasnip.loaders.from_vscode').lazy_load()
-      luasnip.config.setup {}
+      luasnip.config.setup {
+
+      }
+
+
 
       cmp.setup({
         snippet = {
@@ -45,7 +50,7 @@ return {
           ['<C-k>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete {},
+          -- ['<C-Space>'] = cmp.mapping.complete {},
           ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
@@ -58,8 +63,10 @@ return {
           { name = 'path' },
           { name = 'autohotkey' },
           { name = 'cmdline' },
-          { name = 'python' }
-        })
+          { name = 'python' },
+          { name = 'prettier' },
+        }),
+
       })
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ '/', '?' }, {

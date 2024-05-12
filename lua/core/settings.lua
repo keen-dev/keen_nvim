@@ -48,6 +48,9 @@ vim.o.cursorline = true
 -- vim.o.colorcolumn = "80"
 vim.o.tabstop = 4
 
+vim.o.conceallevel = 2
+vim.o.concealcursor = ''
+
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function()

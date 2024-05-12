@@ -21,6 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 --
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
+--
+
+
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   { import = 'plugins' },
@@ -28,5 +31,22 @@ require('lazy').setup({
 
 require('core.keymaps')
 
+-- Initialize plugin configs
+require("cmp").setup({
+  formatting = { format = require("tailwindcss-colorizer-cmp").formatter }
+})
+
+require 'lspconfig'.svelte.setup {}
+require 'lspconfig'.pyright.setup {}
+
+
+-- local custom_onedark = require('lualine.themes.onedark')
+-- custom_onedark.normal.c.fg = '#f96743'
+--
+-- require('lualine').setup {
+--   options = {
+--     theme = custom_onedark
+--   }
+-- }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
