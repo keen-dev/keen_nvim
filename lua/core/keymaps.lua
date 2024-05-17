@@ -74,7 +74,7 @@ vim.keymap.set('n', '<leader>pr', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>pd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>pp', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
--- ToggleTerm Keymaps
+-- -- ToggleTerm Keymaps
 function _G.set_terminal_keymaps()
 	local opts = { buffer = 0 }
 	vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
@@ -95,3 +95,8 @@ vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=135 direction=vertical<CR>',
 vim.keymap.set('n', '<leader>th', ':ToggleTerm size=40 direction=horizontal<CR>',
 	{ silent = true, desc = '[H]orizontal [T]erminal' })
 vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { silent = true, desc = '[F]loating [T]erminal' })
+
+-- vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', { silent = true })
