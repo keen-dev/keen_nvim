@@ -5,7 +5,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     -- See `:help lualine.txt`
     opts = {
-      theme = 'custom_onedark',
+      theme = 'custom_catppuccin',
       -- options = {
       icons_enabled = true,
       -- theme = 'onedark',

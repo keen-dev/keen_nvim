@@ -8,10 +8,14 @@ return {
 		version = '*',
 		config = true
 	},
+	{
+		'echasnovski/mini.nvim',
+		version = false
+	},
 
 	'tpope/vim-surround',
-	'easymotion/vim-easymotion',
-	'justinmk/vim-sneak',
+	{ 'easymotion/vim-easymotion', event = "BufRead" },
+	{ 'justinmk/vim-sneak',        event = "BufRead" },
 
 	-- Git related plugins
 	'tpope/vim-fugitive',
@@ -30,7 +34,7 @@ return {
 		main = 'ibl',
 		opts = {},
 	},
-	{ 'szw/vim-maximizer' },
+	-- { 'szw/vim-maximizer' },
 	"nvim-neotest/nvim-nio",
 	--
 	-- {

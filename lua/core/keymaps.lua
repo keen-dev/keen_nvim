@@ -33,19 +33,27 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 
 -- Window Navigation
-vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { silent = true })
-vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { silent = true })
-vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { silent = true })
-vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { silent = true })
+
+vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', { noremap = true, silent = true })
+
+
 
 -- Tab Navigation
 vim.keymap.set('n', '<C-t>', ':tabnext<CR>', { silent = true })
 
 -- Window Management
 vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true, desc = '[X] Close window' })
+vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true, desc = '[X] Close window' })
 vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true, desc = '[V]ertical split' })
 vim.keymap.set('n', '<leader>wh', ':split<CR>', { silent = true, desc = '[H]orizontal split' })
-vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true, desc = '[M]aximizer' })
+-- vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true, desc = '[M]aximizer' })
 
 vim.keymap.set('n', '<leader>wk', ':resize +5<CR>', { silent = true, desc = '[+] Resize vertically' })
 vim.keymap.set('n', '<leader>wj', ':resize -5<CR>', { silent = true, desc = '[-] Resize vertically' })
@@ -74,7 +82,7 @@ vim.keymap.set('n', '<leader>pr', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>pd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>pp', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
--- -- ToggleTerm Keymaps
+-- -- -- ToggleTerm Keymaps
 function _G.set_terminal_keymaps()
 	local opts = { buffer = 0 }
 	vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
@@ -100,3 +108,11 @@ vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { silent = 
 -- vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', { silent = true })
 -- vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', { silent = true })
 -- vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', { silent = true })
+--
+-- vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+--
+-- -- Expand 'cc' into 'CodeCompanion' in the command line

@@ -15,12 +15,15 @@ return {
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
 
+      'onsails/lspkind-nvim',
+
     },
     config = function()
       -- [[ Configure nvim-cmp ]]
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require('lspkind')
       require('luasnip.loaders.from_vscode').lazy_load()
       luasnip.config.setup {
 
@@ -29,6 +32,7 @@ return {
 
 
       cmp.setup({
+
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -50,6 +54,7 @@ return {
           ['<C-k>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-d>'] = cmp.mapping.close(),
           -- ['<C-Space>'] = cmp.mapping.complete {},
           ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
@@ -65,6 +70,7 @@ return {
           { name = 'cmdline' },
           { name = 'python' },
           { name = 'prettier' },
+          { name = 'lspkind' },
         }),
 
       })
@@ -85,8 +91,21 @@ return {
           { name = 'cmdline' }
         })
       })
+
+      cmp.event:on('confirm_done', function(event)
+        local entry = event.entry
+        local vim_item = entry:get_completion_item()
+        if vim_item.kind == cmp.lsp.CompletionItemKind.Function or vim_item.kind == cmp.lsp.CompletionItemKind.Method then
+          local line = vim.api.nvim_get_current_line()
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local col = cursor[2]
+          vim.api.nvim_set_current_line(line:sub(1, col) .. '()' .. line:sub(col + 1))
+          vim.api.nvim_win_set_cursor(0, { cursor[1], col + 1 })
+        end
+      end)
     end
   }
+
 }
 --     ['<Tab>'] = cmp.mapping(function(fallback)
 --       if cmp.visible() then

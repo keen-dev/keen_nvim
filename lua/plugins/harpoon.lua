@@ -1,6 +1,7 @@
 return {
   {
     'ThePrimeagen/harpoon',
+    event = 'VeryLazy',
     config = function()
       -- Harpoon Keymaps
       local mark = require('harpoon.mark')

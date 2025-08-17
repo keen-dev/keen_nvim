@@ -32,9 +32,9 @@ require('lazy').setup({
 require('core.keymaps')
 
 -- Initialize plugin configs
-require("cmp").setup({
-  formatting = { format = require("tailwindcss-colorizer-cmp").formatter }
-})
+-- require("cmp").setup({
+-- formatting = { format = require("tailwindcss-colorizer-cmp").formatter }
+-- })
 
 require 'lspconfig'.svelte.setup {}
 require 'lspconfig'.pyright.setup {}
