@@ -36,8 +36,9 @@ require('core.keymaps')
 -- formatting = { format = require("tailwindcss-colorizer-cmp").formatter }
 -- })
 
-require 'lspconfig'.svelte.setup {}
-require 'lspconfig'.pyright.setup {}
+-- LSP servers are now configured in lua/plugins/nvim-lsp.lua
+-- require 'lspconfig'.svelte.setup {}
+-- require 'lspconfig'.pyright.setup {}
 
 
 -- local custom_onedark = require('lualine.themes.onedark')

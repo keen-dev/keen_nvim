@@ -6,7 +6,8 @@ return {
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			'williamboman/mason.nvim',
-			'williamboman/mason-lspconfig.nvim',
+			-- Temporarily disable mason-lspconfig due to registry issue
+			-- 'williamboman/mason-lspconfig.nvim',
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -63,11 +64,6 @@ return {
 				end, { desc = 'Format current buffer with LSP' })
 			end
 
-			-- mason-lspconfig requires that these setup functions are called in this order
-			-- before setting up the servers.
-			require('mason').setup()
-			require('mason-lspconfig').setup()
-
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 			--
@@ -82,10 +78,15 @@ return {
 				-- gopls = {},
 				pyright = {},
 				-- rust_analyzer = {},
-				tsserver = {
+				ts_ls = {
 					filetypes = { 'javascript', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascriptreact' },
 				},
 				html = { filetypes = { 'html', 'twig', 'hbs', 'htmldjango' } },
+				cssls = {},
+				jsonls = {},
+				emmet_ls = {
+					filetypes = { 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+				},
 				tailwindcss = {},
 				eslint = {},
 				lua_ls = {
@@ -96,6 +97,8 @@ return {
 				},
 			}
 
+			-- Setup mason without mason-lspconfig for now
+			require('mason').setup()
 
 			local format_is_enabled = true
 			vim.api.nvim_create_user_command('KickstartFormatToggle', function()
@@ -134,9 +137,9 @@ return {
 					end
 
 
-					-- Tsserver usually works poorly. Sorry you work with bad languages
+					-- ts_ls usually works poorly. Sorry you work with bad languages
 					-- You can remove this line if you know what you're doing :)
-					if client.name == 'tsserver' then
+					if client.name == 'ts_ls' then
 						return
 					end
 
@@ -168,23 +171,27 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-			-- Ensure the servers above are installed
-			local mason_lspconfig = require 'mason-lspconfig'
+			-- Setup each server manually
+			for server_name, server_config in pairs(servers) do
+				require('lspconfig')[server_name].setup {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = server_config,
+					filetypes = server_config.filetypes,
+				}
+			end
 
-			mason_lspconfig.setup {
-				ensure_installed = vim.tbl_keys(servers),
-			}
-
-			mason_lspconfig.setup_handlers {
-				function(server_name)
-					require('lspconfig')[server_name].setup {
-						capabilities = capabilities,
-						on_attach = on_attach,
-						settings = servers[server_name],
-						filetypes = (servers[server_name] or {}).filetypes,
-					}
-				end,
-			}
+			-- Temporary placeholder for when mason-lspconfig is working again
+			-- mason_lspconfig.setup_handlers {
+			--   function(server_name)
+			--     require('lspconfig')[server_name].setup {
+			--       capabilities = capabilities,
+			--       on_attach = on_attach,
+			--       settings = servers[server_name],
+			--       filetypes = (servers[server_name] or {}).filetypes,
+			--     }
+			--   end,
+			-- }
 		end,
 	},
 

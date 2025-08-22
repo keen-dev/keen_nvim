@@ -66,11 +66,6 @@ return {
           { name = 'luasnip' },
           { name = 'buffer' },
           { name = 'path' },
-          { name = 'autohotkey' },
-          { name = 'cmdline' },
-          { name = 'python' },
-          { name = 'prettier' },
-          { name = 'lspkind' },
         }),
 
       })
@@ -105,56 +100,4 @@ return {
       end)
     end
   }
-
 }
---     ['<Tab>'] = cmp.mapping(function(fallback)
---       if cmp.visible() then
---         cmp.select_next_item()
---       elseif luasnip.expand_or_locally_jumpable() then
---         luasnip.expand_or_jump()
---       else
---         fallback()
---       end
---     end, { 'i', 's' }),
---     ['<S-Tab>'] = cmp.mapping(function(fallback)
---       if cmp.visible() then
---         cmp.select_prev_item()
---       elseif luasnip.locally_jumpable(-1) then
---         luasnip.jump(-1)
---       else
---         fallback()
---       end
---     end, { 'i', 's' }),
--- cmp.setup.cmdline(':', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
-
--- cmp.setup({
---   sources = {
---     { name = 'buffer',
---     }
---   }
--- })
---
--- cmp.setup.cmdline('/', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = 'buffer' }
---   }
--- })
--- cmp.setup.cmdline(':', {
---   sources = {
---     { name = 'cmdline_history' },
---   }
--- })
--- sources = {
---   { name = 'nvim_lsp' },
---   { name = 'luasnip' },
---   { name = 'autohotkey' },
---   { name = 'buffer' },
---   { name = 'path' },
--- }

@@ -34,7 +34,11 @@ return {
 		main = 'ibl',
 		opts = {},
 	},
-	-- { 'szw/vim-maximizer' },
+	{ 
+		'szw/vim-maximizer',
+		cmd = 'MaximizerToggle',
+		keys = { '<leader>wm' },
+	},
 	"nvim-neotest/nvim-nio",
 	--
 	-- {

@@ -50,14 +50,13 @@ vim.keymap.set('n', '<C-t>', ':tabnext<CR>', { silent = true })
 
 -- Window Management
 vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true, desc = '[X] Close window' })
-vim.keymap.set('n', '<leader>wx', ':close<CR>', { silent = true, desc = '[X] Close window' })
 vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true, desc = '[V]ertical split' })
-vim.keymap.set('n', '<leader>wh', ':split<CR>', { silent = true, desc = '[H]orizontal split' })
--- vim.keymap.set('n', '<leader>wm', ':MaximizerToggle<CR>', { silent = true, desc = '[M]aximizer' })
+vim.keymap.set('n', '<leader>ws', ':split<CR>', { silent = true, desc = '[S]plit horizontal' })
+vim.keymap.set('n', '<leader>wm', '<cmd>MaximizerToggle<CR>', { silent = true, desc = '[M]aximizer' })
 
 vim.keymap.set('n', '<leader>wk', ':resize +5<CR>', { silent = true, desc = '[+] Resize vertically' })
 vim.keymap.set('n', '<leader>wj', ':resize -5<CR>', { silent = true, desc = '[-] Resize vertically' })
-vim.keymap.set('n', '<leader>wh', ':vertical resize +5<CR>', { silent = true, desc = '[+] Resize horizontally' })
+vim.keymap.set('n', '<leader>w>', ':vertical resize +5<CR>', { silent = true, desc = '[+] Resize horizontally' })
 vim.keymap.set('n', '<leader>wH', ':vertical resize +50<CR>', { silent = true, desc = '[+] Resize [H]orizontally - +50' })
 vim.keymap.set('n', '<leader>wl', ':vertical resize -5<CR>', { silent = true, desc = '[-] Resize horizontally' })
 vim.keymap.set('n', '<leader>wL', ':vertical resize -50<CR>', { silent = true, desc = '[-] Resize horizontally - -50' })
