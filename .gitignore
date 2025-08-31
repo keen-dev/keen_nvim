@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+lua/.DS_Store
+
+# Neovim swap/backup
+*.swp
+*.swo
+*.swx
+*.tmp
+~*
+
+# Node/JS
+node_modules/
+dist/
+build/
+
+# Rust
+target/
+
+# Others
+*.log
+
