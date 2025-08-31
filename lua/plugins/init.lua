@@ -8,24 +8,18 @@ return {
 		version = '*',
 		config = true
 	},
-	{
-		'echasnovski/mini.nvim',
-		version = false
-	},
 
-	'tpope/vim-surround',
-	{ 'easymotion/vim-easymotion', event = "BufRead" },
-	{ 'justinmk/vim-sneak',        event = "BufRead" },
+	-- Motions: replaced EasyMotion/Sneak with flash.nvim (see lua/plugins/flash.lua)
 
-	-- Git related plugins
-	'tpope/vim-fugitive',
-	'tpope/vim-rhubarb',
+	-- Git related plugins (lazy-load on commands)
+	{ 'tpope/vim-fugitive', cmd = { 'Git', 'G', 'Gdiffsplit', 'Gread', 'Gwrite' } },
+	{ 'tpope/vim-rhubarb',  cmd = { 'GBrowse' } },
 
 	-- Detect tabstop and shiftwidth automatically
-	'tpope/vim-sleuth',
+	{ 'tpope/vim-sleuth', event = 'VeryLazy' },
 
 	-- "gc" to comment visual regions/lines
-	{ 'numToStr/Comment.nvim', opts = {} },
+	{ 'numToStr/Comment.nvim', opts = {}, keys = { 'gc', 'gcc', 'gbc' } },
 	{
 		-- Add indentation guides even on blank lines
 		'lukas-reineke/indent-blankline.nvim',
@@ -33,13 +27,9 @@ return {
 		-- See `:help ibl`
 		main = 'ibl',
 		opts = {},
+		event = { 'BufReadPost', 'BufNewFile' },
 	},
-	{ 
-		'szw/vim-maximizer',
-		cmd = 'MaximizerToggle',
-		keys = { '<leader>wm' },
-	},
-	"nvim-neotest/nvim-nio",
+	{ "nvim-neotest/nvim-nio", event = 'VeryLazy' },
 	--
 	-- {
 	--   'gelguy/wilder.nvim',

@@ -5,8 +5,7 @@ vim.keymap.set({ 'n', 'v' }, '<C-s>', ':w<CR>', { silent = true })
 vim.keymap.set({ 'i' }, '<C-s>', '<Esc>:w<CR>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<C-/>', ':nohl<CR>', { silent = true })
 
--- Easy Motion
-vim.keymap.set('n', '<leader><leader>', '<Plug>(easymotion-prefix)', { silent = true, desc = 'EasyMotion Prefix' })
+-- Flash provides jump/motion; removed EasyMotion mapping
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -19,7 +18,8 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- File Explorer
-vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true, desc = 'Toggle Explorer' })
+vim.keymap.set('n', '<leader>E', ':Neotree reveal<CR>', { silent = true, desc = 'Reveal in Explorer' })
 
 -- Noice
 vim.keymap.set('n', '<leader>ml', ':NoiceLast<CR>', { silent = true, desc = 'Noice [L]ast' })
@@ -94,7 +94,14 @@ function _G.set_terminal_keymaps()
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+local tt_group = vim.api.nvim_create_augroup('ToggleTermKeymaps', { clear = true })
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = tt_group,
+  pattern = 'term://*',
+  callback = function()
+    pcall(_G.set_terminal_keymaps)
+  end,
+})
 
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>', { silent = true, desc = '[T]oggle [T]erminal' })
 vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=135 direction=vertical<CR>',

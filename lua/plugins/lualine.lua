@@ -5,13 +5,12 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     -- See `:help lualine.txt`
     opts = {
-      theme = 'custom_catppuccin',
-      -- options = {
-      icons_enabled = true,
-      -- theme = 'onedark',
-      -- component_separators = '|',
-      -- section_separators = '',
-      -- },
+      options = {
+        theme = 'catppuccin',
+        icons_enabled = true,
+        -- component_separators = '|',
+        -- section_separators = '',
+      },
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
@@ -21,7 +20,22 @@ return {
             path = 1,
           },
         },
-        lualine_x = { 'fileformat', 'filetype' },
+        lualine_x = {
+          {
+            function()
+              local ok, noice = pcall(require, 'noice')
+              if not ok then return '' end
+              return noice.api.statusline.mode.get()
+            end,
+            cond = function()
+              local ok, noice = pcall(require, 'noice')
+              return ok and noice.api.statusline.mode.has()
+            end,
+            color = { fg = '#ff9e64' },
+          },
+          'fileformat',
+          'filetype',
+        },
         lualine_y = { 'filetype', 'fileformat', { 'searchcount', maxcount = 999, timeout = 500 } },
         lualine_z = { 'progress' },
 
