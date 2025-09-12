@@ -36,14 +36,23 @@ return {
 				nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 				nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-				nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-				nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-				nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-				nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-				nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols,
-					'[D]ocument [S]ymbols')
-				nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
-					'[W]orkspace [S]ymbols')
+				-- Use Telescope if available; otherwise fall back to built-in LSP
+				local function with_telescope(fn_name, fallback)
+					return function()
+						local ok, tb = pcall(require, 'telescope.builtin')
+						if ok and type(tb[fn_name]) == 'function' then
+							return tb[fn_name]()
+						end
+						return fallback()
+					end
+				end
+
+				nmap('gd', with_telescope('lsp_definitions', vim.lsp.buf.definition), '[G]oto [D]efinition')
+				nmap('gr', with_telescope('lsp_references', vim.lsp.buf.references), '[G]oto [R]eferences')
+				nmap('gI', with_telescope('lsp_implementations', vim.lsp.buf.implementation), '[G]oto [I]mplementation')
+				nmap('<leader>D', with_telescope('lsp_type_definitions', vim.lsp.buf.type_definition), 'Type [D]efinition')
+				nmap('<leader>ds', with_telescope('lsp_document_symbols', vim.lsp.buf.document_symbol), '[D]ocument [S]ymbols')
+				nmap('<leader>ws', with_telescope('lsp_dynamic_workspace_symbols', vim.lsp.buf.workspace_symbol), '[W]orkspace [S]ymbols')
 
 				-- See `:help K` for why this keymap
 				nmap('K', vim.lsp.buf.hover, 'Hover Documentation')

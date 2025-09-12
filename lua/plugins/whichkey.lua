@@ -36,6 +36,11 @@ return {
         { '<leader>t', group = 'Terminal' },
         { '<leader>p', group = 'Project Finder' },
         { '<leader>f', group = 'Formatting' },
+        { 'g', group = 'Goto', mode = 'n' },
+        { 'gd', desc = 'Goto Definition', mode = 'n' },
+        { 'gr', desc = 'Goto References', mode = 'n' },
+        { 'gI', desc = 'Goto Implementation', mode = 'n' },
+        { 'gD', desc = 'Goto Declaration', mode = 'n' },
       })
       -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
       -- ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
