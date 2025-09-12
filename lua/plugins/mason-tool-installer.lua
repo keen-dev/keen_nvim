@@ -23,6 +23,7 @@ return {
         'stylua',
         'isort',
         'black',
+        'ruff',
 
         -- DAP
         'delve',

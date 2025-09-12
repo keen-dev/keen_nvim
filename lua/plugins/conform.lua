@@ -26,7 +26,8 @@ return {
       markdown = { "prettier" },
       graphql = { "prettier" },
       lua = { "stylua" },
-      python = { "isort", "black" },
+      -- Prefer ruff for Python formatting; isort handles imports
+      python = { "isort", "ruff_format" },
     },
     format_on_save = {
       timeout_ms = 500,
