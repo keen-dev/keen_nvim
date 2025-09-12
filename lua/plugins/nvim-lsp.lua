@@ -6,8 +6,7 @@ return {
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			'williamboman/mason.nvim',
-			-- Temporarily disable mason-lspconfig due to registry issue
-			-- 'williamboman/mason-lspconfig.nvim',
+			'williamboman/mason-lspconfig.nvim',
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -65,13 +64,8 @@ return {
 			end
 
 			-- Enable the following language servers
-			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-			--
-			--  Add any additional override configuration in the following tables. They will be passed to
-			--  the `settings` field of the server config. You must look up that documentation yourself.
-			--
-			--  If you want to override the default filetypes that your language server will attach to you can
-			--  define the property 'filetypes' to the map in question.
+			--  Add/remove servers as needed; mason-lspconfig ensures they are installed
+			--  and automatically sets them up via handlers below.
 			local servers = {
 				-- quick_lint_js = { filetypes = { 'javascript', 'typescript' } },
 				-- clangd = {},
@@ -97,8 +91,13 @@ return {
 				},
 			}
 
-            -- Setup mason without mason-lspconfig for now
+            -- Setup mason and mason-lspconfig for automatic installs
             require('mason').setup()
+            local mason_lspconfig = require('mason-lspconfig')
+            mason_lspconfig.setup {
+              ensure_installed = vim.tbl_keys(servers),
+              automatic_installation = true,
+            }
 
 			-- Setup neovim lua configuration
 			require('neodev').setup()
@@ -107,27 +106,29 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-			-- Setup each server manually
-			for server_name, server_config in pairs(servers) do
-				require('lspconfig')[server_name].setup {
-					capabilities = capabilities,
-					on_attach = on_attach,
-					settings = server_config,
-					filetypes = server_config.filetypes,
-				}
-			end
-
-			-- Temporary placeholder for when mason-lspconfig is working again
-			-- mason_lspconfig.setup_handlers {
-			--   function(server_name)
-			--     require('lspconfig')[server_name].setup {
-			--       capabilities = capabilities,
-			--       on_attach = on_attach,
-			--       settings = servers[server_name],
-			--       filetypes = (servers[server_name] or {}).filetypes,
-			--     }
-			--   end,
-			-- }
+				-- Use mason-lspconfig to set up servers automatically when available,
+				-- otherwise fall back to setting up the servers table directly.
+				if type(mason_lspconfig.setup_handlers) == 'function' then
+				  mason_lspconfig.setup_handlers {
+				    function(server_name)
+				      require('lspconfig')[server_name].setup {
+				        capabilities = capabilities,
+				        on_attach = on_attach,
+				        settings = servers[server_name],
+				        filetypes = (servers[server_name] or {}).filetypes,
+				      }
+				    end,
+				  }
+				else
+				  for server_name, server_config in pairs(servers) do
+				    require('lspconfig')[server_name].setup {
+				      capabilities = capabilities,
+				      on_attach = on_attach,
+				      settings = server_config,
+				      filetypes = server_config.filetypes,
+				    }
+				  end
+				end
 		end,
 	},
 
